@@ -1,5 +1,6 @@
-export default function Cart() {
-    
+import React from 'react';
+export default function Cart({cartItems}) {
+    const total = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
     return (
         <div className="table-container">
             <h4 className="card-title">Cart</h4>
@@ -12,7 +13,13 @@ export default function Cart() {
 
                 </thead>
                 {
-                    
+                    cartItems.map( item=>(
+                        <tr key={item.id}>
+                            <td>{item.name}</td>
+                            <td>{item.qty}</td>
+                            <td>{item.price}</td>
+                        </tr>
+                    ))
                 }
                 <tr>
                     <td >Grand Total : </td>
